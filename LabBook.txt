@@ -1,0 +1,28 @@
+######### 20.07.2020
+
+# Downloaded R and RStudio
+# Installed Vulcan packages
+
+# INITIAL MEETING NOTES:
+#	GO data -> ??Annotation -> DiffBind -> Vulcan
+#	62 Samples on GO (Input files = controls)
+#	This week = example data for vulcan & diffbind, download and learn to align the data
+#	Apply to viking project
+
+# Applied and created account for Viking
+# Downloaded and set up PuTTY and PulseSecure
+# Created GitHub account
+
+######### 21.07.2020
+
+# Downloaded and set up SourceTree as GitHub interface
+
+# 'LabBook.txt' file added to GitHub
+
+# 'Vulcan Demo.R'
+#	File to run vulcan demo data from https://bioconductor.org/packages/release/bioc/vignettes/vulcan/inst/doc/vulcan.pdf
+#	Committed to GitHub directory
+#	Demo completed - all outputs visually same as in vignette
+
+# 'DiffBind Demo.R'
+#	File to run DiffBind demo data from http://bioconductor.org/packages/release/bioc/vignettes/DiffBind/inst/doc/DiffBind.pdf
