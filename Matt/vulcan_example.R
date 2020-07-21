@@ -24,3 +24,9 @@ load(system.file("extdata","network.rda",package = "vulcandata",mustWork = TRUE)
 vobj_analysis <- vulcan(vobj,network=network, contrast=c("t90","t45"),minsize=5)
 plot(vobj_analysis$msviper,mrs=7)
 
+#Now we look to perform GSEA to fit a Pareto tail distribution
+#This example generates an artificial signiture of 1000 genes with nomrally-distributed positive expression. 
+reflist<-setNames(-sort(rnorm(1000)),paste0("gene",1:1000))
+set<-paste0("gene",sample(1:200,50)) #Gene set composed of 50 genes randomly picked from a tail 
+obj<-gsea(reflist,set,method = "pareto")
+plot_gsea(obj)
