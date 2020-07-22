@@ -13,10 +13,24 @@
 # Downloaded and set up PuTTY and PulseSecure
 # Created GitHub account
 
+# Summary = First meeting, Set up various softwares for project
+# Plan for Tomorrow = Run through sample data in DiffBind and VULCAN vignettes
+
 ######### 21.07.2020
 
 # Downloaded and set up SourceTree as GitHub interface
 
+# 'LabBook.txt' file added to GitHub
+
 # 'Vulcan Demo.R'
 #	File to run vulcan demo data from https://bioconductor.org/packages/release/bioc/vignettes/vulcan/inst/doc/vulcan.pdf
-#	In GitHub directory
+#	Committed to GitHub directory
+#	Demo completed - all outputs visually same as in vignette
+
+# 'DiffBind Demo.R'
+#	File to run DiffBind demo data from http://bioconductor.org/packages/release/bioc/vignettes/DiffBind/inst/doc/DiffBind.pdf
+#	Committed to GitHub directory
+#	Demo completed - all outputs visually same as in vignette
+
+# Summary = Worked out and used GitHub via SourceTree, Ran through vignette demos for DiffBind and VULCAN
+# Plan for Tomorrow = Download and attempt raw data, Experiment with Gviz graphical visualisation
