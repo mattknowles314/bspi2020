@@ -13,22 +13,22 @@ unknown data I am more comfortable with this than with R.
 ---USAGE---
 
 Have a GSM file you want to get a quick peek at? Look no further, simply put the name of the file
-in gsm_code (don't forget the .txt.gz extension!) and the folder you store the file in in gsm_location.
+in gsm_code and the folder you store the file in in gsm_location.
 
 Next, pick a chromosome (make sure the file actually contains the paticular chromosome you are after),
 then sit back, relax, and enjoy the graphs!
 
 '''
 
-import time
+import os
 import gzip
 import matplotlib.pyplot as plt
 import numpy
 
-gsm_code = "GSM798400.txt.gz"
-gsm_location = "../../BSPIData/"+gsm_code
+gsm_code = str(input("Enter GSM Code>> ")).upper()
+gsm_location = "../../BSPIData/"+gsm_code+".txt.gz"
 
-chromosome = "8" #BUG: IF YOU PUT IN 1 OR 2, YOU WILL ALSO GET 11,12,13,ETC I WILL FIX THIS SOON
+chromosome = str(input("Enter Chromosome: "))  #BUG: IF YOU PUT IN 1 OR 2, YOU WILL ALSO GET 11,12,13,ETC I WILL FIX THIS SOON
 
 chrome = []
 gsm = gzip.open(gsm_location,mode="rt")
@@ -37,6 +37,7 @@ for i in gsm.readlines():
         chrome.append(i)
 
 #Now we have out Chromosme, we need to split the strings into a list 
+
 peak_values = []
 start_point = []
 end_point = []
@@ -48,7 +49,10 @@ for i in chrome:
     end_point.append(temp_data[2])
     midpoints.append(0.5*(int(temp_data[1])+int(temp_data[2])))
 
+
+filename = gsm_code+chromosome+".png"
 plt.scatter(midpoints, peak_values)
 plt.xlabel('Poisition on Chromosome')
 plt.ylabel('Peak value')
-plt.savefig('graph.png')
+plt.savefig("BEDPlots/"+filename)
+os.system("xdg-open BEDPlots/"+filename) #If you get an error here, replace xdg-open with 'start'
