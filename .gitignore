@@ -1,2 +1,4 @@
 *.log
 *.toc
+.RData
+.Rhistory
