@@ -1,4 +1,4 @@
-######### 20.07.2020
+############################################################################################################ 20.07.2020
 
 # Downloaded R and RStudio
 # Installed Vulcan packages
@@ -16,21 +16,43 @@
 # Summary = First meeting, Set up various softwares for project
 # Plan for Tomorrow = Run through sample data in DiffBind and VULCAN vignettes
 
-######### 21.07.2020
+############################################################################################################ 21.07.2020
 
 # Downloaded and set up SourceTree as GitHub interface
 
 # 'LabBook.txt' file added to GitHub
 
-# 'Vulcan Demo.R'
+# 'VulcanDemo.R'
 #	File to run vulcan demo data from https://bioconductor.org/packages/release/bioc/vignettes/vulcan/inst/doc/vulcan.pdf
 #	Committed to GitHub directory
 #	Demo completed - all outputs visually same as in vignette
 
-# 'DiffBind Demo.R'
+# 'DiffBindDemo.R'
 #	File to run DiffBind demo data from http://bioconductor.org/packages/release/bioc/vignettes/DiffBind/inst/doc/DiffBind.pdf
 #	Committed to GitHub directory
 #	Demo completed - all outputs visually same as in vignette
 
 # Summary = Worked out and used GitHub via SourceTree, Ran through vignette demos for DiffBind and VULCAN
 # Plan for Tomorrow = Download and attempt raw data, Experiment with Gviz graphical visualisation
+
+############################################################################################################ 22.07.2020
+
+# Added .Rhistory and .Rdata files to gitignore
+# Downloaded Pycharm and Sublimetext
+
+# 'SampleTest1.R'
+#	File to experiment with sample data
+#	Sample GSM798383 (GEO Accession number) used as test
+#	Files readable either zipped or unzipped
+#	Gviz package installed https://bioconductor.org/packages/release/bioc/vignettes/Gviz/inst/doc/Gviz.html#1_introduction
+#	Branches created to work on DiffBind vs. Gviz on SampleTest1
+
+# Logged into viking - not all software currently available but can request
+# To submit software installation requests, report any problems or issues you are having with Viking, please email: itsupport@york.ac.uk
+# Better to download windows subsystem for linux or request on Viking?
+
+# Downloaded Tar file to Viking /users/jsa529/BPSI2020/TestRaw and unzipped all files
+# All files now present in .gz format
+
+# Summary = All sample files downloaded to Viking, Some work on Sample in R
+# Plan for Tomorrow = Request software for Viking, Re-merge branches
