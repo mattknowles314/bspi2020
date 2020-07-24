@@ -25,30 +25,34 @@ import gzip
 import matplotlib.pyplot as plt
 import numpy
 
-gsm_code = str(input("Enter GSM Code>> ")).upper()
-gsm_location = "../../BSPIData/"+gsm_code+".txt.gz"
+select = False
+while select == False:
+    gsm_code = str(input("Enter GSM Code>> ")).upper()
+    gsm_location = "../../BSPIData/"+gsm_code+".txt.gz"
+    isFile = os.path.isfile(gsm_location)
+    if isFile == False:
+        print("Not a file, please try again \n")
+        select=False
+    else:
+        select = True
 
-chromosome = str(input("Enter Chromosome: "))  #BUG: IF YOU PUT IN 1 OR 2, YOU WILL ALSO GET 11,12,13,ETC I WILL FIX THIS SOON
-
-chrome = []
-gsm = gzip.open(gsm_location,mode="rt")
-for i in gsm.readlines():
-    if i[0:5] == ("chr"+chromosome):
-        chrome.append(i)
-
-#Now we have out Chromosme, we need to split the strings into a list 
+chromosome = str(input("Enter Chromosome: "))
 
 peak_values = []
 start_point = []
 end_point = []
 midpoints = []
-for i in chrome:
-    temp_data = i.split()
-    peak_values.append(int(temp_data[4]))
-    start_point.append(temp_data[1])
-    end_point.append(temp_data[2])
-    midpoints.append(0.5*(int(temp_data[1])+int(temp_data[2])))
+chrome = []
 
+gsm = gzip.open(gsm_location,mode="rt")
+for i in gsm.readlines():
+    x = i.split()
+    if x[0] == "chr"+chromosome:
+        chrome.append(x)
+        peak_values.append(int(x[4]))
+        start_point.append(x[1])
+        end_point.append(x[2])
+        midpoints.append(0.5*(int(x[1])+int(x[2])))
 
 filename = gsm_code+chromosome+".png"
 plt.scatter(midpoints, peak_values)
