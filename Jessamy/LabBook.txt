@@ -108,4 +108,47 @@
 
 ############################################################################################################ 24.07.2020
 
-#
+# Began Datacamp git course - Chp1 complete
+# Downloaded SRA for linux
+
+# Tar file of all sample data
+#	Unpacked and stored in '/home/jsa/Internship 2020/SampleData'
+tar -tvf GSE32222_RAW.tar | wc -l
+#	63 files
+
+# SRA downloaded to linux
+
+# Summary = Git course started, Samples downloaded
+# Plan for Tomorrow = Day off
+
+############################################################################################################ 25.07.2020
+
+# DAY OFF
+
+############################################################################################################ 26.07.2020
+
+# Datacamp git course - Chp2 complete
+
+# Summary =  Git course Chp2
+# Plan for Tomorrow = Meeting, Chp3 git course
+
+############################################################################################################ 27.07.2020
+
+# Datacamp git course - Chp3 complete
+
+# MEETING NOTES:
+#	Scripts for all stages
+#	Some intermediate steps skippable but make whole pipeline
+#	Metadata - in series matrix file (for finding condition of patient or in paper)
+#	Tar file is processed .bed files need to find unprocessed data
+#	GRCh38 used for aligning - contains mitochondrial DNA
+#	Focus on aligning this week
+
+# 'MatrixViewer.R'
+#	R script used to view series matrix in table format
+#	GEOquery package
+#	Able to be exported to spreadsheet
+#	Add to tools?
+
+# Summary =
+# Plan for Tomorrow =
