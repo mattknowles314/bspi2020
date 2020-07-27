@@ -4,7 +4,7 @@ setwd("                 ") # Insert your working directory folder here
 
 ################################### VERSION 1 ##########################################
 
-# This version produces a 'Formal class ExpressionSet' SMatrixV2a format
+# This version produces a 'Formal class ExpressionSet' data format
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -17,7 +17,7 @@ SMatrix = getGEO(filename = "              ") # Insert pathway to your copy of G
 
 ################################### VERSION 2 ##########################################
 
-# This version produces a classic SMatrixV2aframe style table
+# This version produces a classic dataframe style table
 
 SMatrixV2 <- read.table("MatrixEdit.txt", sep = "\t") # MatrixEdit.txt is a changed copy of the original file available in 'tools'
 SMatrixV2 <- t(SMatrixV2)
