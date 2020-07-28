@@ -146,9 +146,18 @@ tar -tvf GSE32222_RAW.tar | wc -l
 
 # 'MatrixViewer.R'
 #	R script used to view series matrix in table format
-#	GEOquery package
-#	Able to be exported to spreadsheet
-#	Add to tools?
+#	GEOquery package - creates 'Formal class ExpressionSet' of all data
+#	'MatrixEdit.txt' used to create simple dataframe - Able to be exported to spreadsheet
+#	Added personal copy and tools copy to git
 
-# Summary =
-# Plan for Tomorrow =
+# Summary = Git course Chp3, Series matrix viewer, Meeting
+# Plan for Tomorrow = Git course Chp4, Create or adapt script for SRA import
+
+############################################################################################################ 28.07.2020
+
+# Datacamp git course - Chp4 complete
+
+#
+
+# Summary = Git course Chp4
+# Plan for Tomorrow = Complete git course
