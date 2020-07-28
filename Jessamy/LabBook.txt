@@ -55,4 +55,100 @@
 # All files now present in .gz format
 
 # Summary = All sample files downloaded to Viking, Some work on Sample in R
-# Plan for Tomorrow = Request software for Viking, Re-merge branches
+# Plan for Tomorrow = Request software for Viking, Re-merge branches, background research
+
+############################################################################################################ 23.07.2020
+
+# Windows subsystem for linux with Ubuntu interface downloaded overnight
+
+# StatQuest: A gentle introduction to ChIP-Seq
+# https://www.youtube.com/watch?v=nkWGmaYRues
+#	Chromatin = DNA wrapped around histones
+#	Chromatin Immunoprecipitation combined with high-throughput sequencing
+#	Identifies loci bound by proteins
+#	Fromaladhyde binds proteins, fragment, select protein with antibody, Wash, Warm to remove binding, DNA isolated (even from histones)
+#	Sequencing library - PCR, check conc., sequence, filter, align
+#	Positions identified to create genome browser track
+#	Control is same chromatin with no antibody
+#	Statistical significant peaks identified
+#	Functional role identified by gene positioning comparison
+
+# Human Molecular Genetics 4th Edition - Tom Strachan and Andrew Read
+# p355 box11.3
+#	Formaldehyde forms covalent bonds between DNA and proteins
+#	Fragmented and protein targetted with antibody
+#	Protein-DNA crosslinking dissolved and protein digested
+#	DNA fragments sequenced and identified
+#	ChIP-chip and ChIP-PET/STAGE genome wide alternatives to ChIP-seq
+#	ChIP-seq unbiased, high resolution, whole fragment sequenced
+#	Chromatin conformation capture aim = identify interactions that occur more frequently than random
+# p403
+#	Maps DNA-protein interactions in vivo
+#	ChIP-seq genomewide and becoming widely used
+#	Identifies DNA regions occupied by regulatory proteins
+
+# Overview of ChIP seq Workflow
+# https://www.youtube.com/watch?v=awTwRAywVJ4
+#	Background DNA & enriched DNA present
+#	Align to reference genome
+#	Excess at protein-DNA loci (usually asymmetric)
+#	Moderate length and single end reads
+#	Basic aligner
+#	Multiple peak calling softwares (MACS common and used in this data)
+#	BED (text format of g range) & WIG (histogram) files produced
+#	ChIPQC, rtracklayer, ChIPpeakAnno/ChIPXpres, DiffBind, AnnotationHub
+#	DiffBind - differential representation of peaks between experimental groups
+#	http://www.bioconductor.org/help/course-materials/2014/SeattleOct2014/B02.2_CommonWorkFlows.html
+
+# Downloaded bwa, python and samtools to linux
+# Completed Datacamp 'Introduction to Shell' course
+
+# Summary = ChIP-seq research, Linux set up and learning
+# Plan for Tomorrow = Datacamp github course, Work out reference genome, Survive internet outage
+
+############################################################################################################ 24.07.2020
+
+# Began Datacamp git course - Chp1 complete
+# Downloaded SRA for linux
+
+# Tar file of all sample data
+#	Unpacked and stored in '/home/jsa/Internship 2020/SampleData'
+tar -tvf GSE32222_RAW.tar | wc -l
+#	63 files
+
+# SRA downloaded to linux
+
+# Summary = Git course started, Samples downloaded
+# Plan for Tomorrow = Day off
+
+############################################################################################################ 25.07.2020
+
+# DAY OFF
+
+############################################################################################################ 26.07.2020
+
+# Datacamp git course - Chp2 complete
+
+# Summary =  Git course Chp2
+# Plan for Tomorrow = Meeting, Chp3 git course
+
+############################################################################################################ 27.07.2020
+
+# Datacamp git course - Chp3 complete
+
+# MEETING NOTES:
+#	Scripts for all stages
+#	Some intermediate steps skippable but make whole pipeline
+#	Metadata - in series matrix file (for finding condition of patient or in paper)
+#	Tar file is processed .bed files need to find unprocessed data
+#	GRCh38 used for aligning - contains mitochondrial DNA
+#	Focus on aligning this week
+
+# 'MatrixViewer.R'
+#	R script used to view series matrix in table format
+#	GEOquery package
+#	Able to be exported to spreadsheet
+#	Add to tools?
+
+# Summary =
+# Plan for Tomorrow =
