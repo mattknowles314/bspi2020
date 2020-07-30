@@ -157,7 +157,31 @@ tar -tvf GSE32222_RAW.tar | wc -l
 
 # Datacamp git course - Chp4 complete
 
-#
+# 'SRA.sh'
+#	Shell script to fetch SRA sequence data and convert to fastq style
+#	Everyone else used python - benefits over shell?
+#		Personally more familiar with shell
+#		Python is powerful
+#		Doing it a different way may create multiple solutions to same problem
+#		Probably easier to string next step in shell to create the master script
 
 # Summary = Git course Chp4
-# Plan for Tomorrow = Complete git course
+# Plan for Tomorrow = Complete git course, Continue shell script
+
+############################################################################################################ 29.07.2020
+
+# Datacamp git course - Final chapter complete
+
+# Summary = Completed datacamp git course
+# Plan for Tomorrow = SRA and BWA shell script, Load softwares into viking
+
+############################################################################################################ 30.07.2020
+
+# SRA toolkit downloaded to Viking
+#	https://github.com/ncbi/sra-tools/wiki
+#	CentOS used as OS on Viking
+#	Binaries path created
+#	Configured - FileDepo directory for dumping
+
+# Summary =
+# Plan for Tomorrow =
