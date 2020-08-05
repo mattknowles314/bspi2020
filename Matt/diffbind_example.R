@@ -2,7 +2,7 @@
 
 library(DiffBind)
 
-samples <- read.csv(file.path(system.file("extra", package="DiffBind"), "tamoxifen.csv"))
+testsamples <- read.csv(file.path(system.file("extra", package="DiffBind"), "tamoxifen.csv"))
 names(samples)
 
 tamoxifen <- dba(sampleSheet = "tamoxifen.csv", dir=system.file("extra", package="DiffBind"))
