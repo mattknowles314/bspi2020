@@ -2,7 +2,7 @@ setwd("C:/Users/jessa/Documents/Internship 2020")
 
 ################################### VERSION 1 ##########################################
 
-# This version produces a 'Formal class ExpressionSet' SMatrixV2a format
+# This version produces a 'Formal class ExpressionSet' data format
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -15,7 +15,7 @@ SMatrixV1 = getGEO(filename = "GSE32222_series_matrix.txt")
 
 ################################### VERSION 2 ##########################################
 
-# This version produces a classic SMatrixV2aframe style table
+# This version produces a classic dataframe style table
 
 SMatrixV2 <- read.table("MatrixEdit.txt", sep = "\t")
 SMatrixV2 <- t(SMatrixV2)
