@@ -26,3 +26,4 @@ plot(tamoxifen, contrast =1 )
 
 #Finally, we need to retrieve the differentially bound sites
 tamoxifen.DB <- dba.report(tamoxifen)
+df.DB
