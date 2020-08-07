@@ -17,5 +17,5 @@ while i<=p:
     print("-----STARTING CALLPEAK FOR "+sample.upper()+"-----")
     os.system("macs2 callpeak -t "+bamreadsdir+sample+" -c "+bamreadsdir+control+" -f BAM -g hs -n ~/Documents/BSPIData/peaks/"+sample.strip(".bam")+" -B -q 0.01")
     print("-----FINISHED CALLPEAK FOR "+sample.upper()+"-----")
-    print("PROGRESS: "+str(((i+1)/p)*100))
+    print("PROGRESS: "+str(((i)/p)*100))
     i+=1
