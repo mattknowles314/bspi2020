@@ -13,6 +13,4 @@ plot(samples_contrast)
 sample_analyze <- dba.analyze(samples_contrast, method=DBA_DESEQ2, bFullLibrarySize=TRUE)
 plot(sample_analyze)
 
-dba.plotHeatmap(sample_analyze,contrast = 1)
-
 samples.DB <- dba.report(sample_analyze)
