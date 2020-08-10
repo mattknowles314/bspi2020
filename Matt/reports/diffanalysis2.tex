@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{Summary of Improved DiffBind results}
+\author{Matthew Knowles}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Plots}
+\begin{figure}[h]
+\centering
+\includegraphics*[scale=0.9]{figures/hmpdata.png}
+\caption{Heatmap Plot}
+\end{figure}
+
+\newpage
+
+\begin{figure}
+\centering
+\caption{PCA Plot}
+\includegraphics*{figures/pcadata.png}
+\end{figure}
+
+\newpage
+
+\begin{figure}
+\centering
+\caption{MA Plot - Much better than last time!}
+\includegraphics*{figures/madata.png}
+\end{figure}
+
+\newpage
+
+\begin{figure}
+\centering
+\caption{Volcano Plot}
+\includegraphics*{figures/volcdata.png}
+\end{figure}
+
+\end{document}
