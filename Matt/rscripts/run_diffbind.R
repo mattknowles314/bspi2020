@@ -12,6 +12,8 @@ analysis <- function(){
     save(samples_contrast, file = "samplescont.Rdata")
     samples_analyze <- dba.analyze(samples_count, method=DBA_DESEQ2, bParallel= FALSE)
     save(samples_analyze, file = "samplesanalyze.Rdata")
+    samples_peaks <- dba.peakset(samples_analyze)
+    save(samples_peaks, file="samplespeaks.Rdata")
     samples.DB <- dba.report(samples_analyze, method = DBA_DESEQ2, bUsePval=TRUE, th=0.04)
     save(samples.DB, file = "samplesDB.Rdata")
 }
@@ -45,4 +47,6 @@ load_files <- function(){
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplescount.Rdata")
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplesDB.Rdata")
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplesdba.Rdata")
+  load(file = "/home/matthew/Documents/BSPIData/rdata/samplespeaks.Rdata")
 }
+
