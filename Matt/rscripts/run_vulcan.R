@@ -11,6 +11,7 @@ load_files <- function(){
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplespeaks.Rdata")
 }
 
+#BASED ON VULCAN.IMPORT BUT CHANGED TO SUIT MY COMPUTER
 import <- function (sheetfile, intervals = 210, samples_dba) 
 {
   sheet <- read.csv(sheetfile, as.is = TRUE)
@@ -55,4 +56,20 @@ import <- function (sheetfile, intervals = 210, samples_dba)
   vobj <- list(peakcounts = peakcounts, samples = samples, 
                peakrpkms = peakrpkms)
   return(vobj)
+}
+
+#ANNOTATE
+annotated_data <- vulcan.annotate(vobj, lborder=-10000, rborder=10000,method="sum")
+
+#NORMALIZE
+normalized_data <- vulcan.normalize(annotated_data)
+
+#LOAD ARCANe NETWORK
+load(system.file("extdata","network.rda",package="vulcandata",mustWork=TRUE))
+
+#VULCAN ANALYSIS
+vobj_analysis <- vulcan(normalized_data,network=network, minsize=5)
+
+vulcan_pipieline <- function() {
+  #I WILL PUT THE COMPLETED PIPELINE IN HERE WHEN IT IS
 }
