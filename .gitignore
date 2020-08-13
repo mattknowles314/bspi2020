@@ -3,3 +3,4 @@
 *.RData
 *.Rhistory
 *.sublime-workspace
+*.code-workspace
