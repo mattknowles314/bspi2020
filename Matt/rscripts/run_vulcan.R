@@ -1,7 +1,8 @@
 setwd("/home/matthew/Documents/BSPIData/")
 
-library(vulcan,silent=TRUE)
-library(DiffBind,silent=TRUE)
+library(vulcan)
+library(DiffBind)
+library(imputeTS)
 
 load_files <- function(){
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplesanalyze.Rdata")
@@ -21,12 +22,12 @@ message("Sheet loaded. You have ", nrow(sheet), " samples and ",
 dbcounts <- samples_count
 listcounts <- dbcounts$peaks
 names(listcounts)<-dbcounts$samples[,1]
-i = 0
-while(i<=18){
-  print(samplenums[["SampleID"]][i])
-  names(listcounts)[i] <- samplenums[["SampleID"]][i]
-  i = i+1
-}
+#i = 0
+#while(i<=18){
+  #print(samplenums[["SampleID"]][i])
+  #names(listcounts)[i] <- samplenums[["SampleID"]][i]
+  #i = i+1
+#}
 first <- listcounts[[1]]
 rawmat <- matrix(NA, nrow = nrow(first), ncol = length(listcounts) + 
                      3)
@@ -66,7 +67,7 @@ vobj <- list(peakcounts = peakcounts, samples = samples,
 
 annotation <- toGRanges(TxDb.Hsapiens.UCSC.hg38.knownGene, feature = "gene") #vulcan.annotate() defaults to hg19, but hg38 used fot this project
 
-gr <- GRanges(vobj$peakcounts) #Issue 2 starts here, see GitHub for more details.
+gr <- GRanges(vobj$peakcounts) 
 anno <- annotatePeakInBatch(gr, AnnotationData = annotation, output = "overlapping",  FeatureLocForDistance = "TSS", bindingRegion = c(-10000, 10000))
 dfanno <- anno
 names(dfanno) <- seq_len(length(dfanno))
@@ -82,26 +83,49 @@ for (gene in genesone) {
   rawcounts[gene, allsamples] <- as.numeric(dfanno[dfanno$feature == gene, allsamples])
 }
 genesmore <- names(peakspergene)[peakspergene > 1]
-  rawcounts <- dist_calc(method, dfanno, rawcounts, genesmore, allsamples)
-  gr <- GRanges(vobj$peakrpkms)
-  anno <- annotatePeakInBatch(gr, AnnotationData = annotation, output = "overlapping", FeatureLocForDistance = "TSS", bindingRegion = c(-10000, 10000))
-  dfanno <- anno
-  names(dfanno) <- seq_len(length(dfanno))
-  dfanno <- as.data.frame(dfanno)
-  allsamples <- unique(unlist(vobj$samples))
-  genes <- unique(dfanno$feature)
-  peakspergene <- table(dfanno$feature)
-  rpkms <- matrix(NA, nrow = length(genes), ncol = length(allsamples))
-  colnames(rpkms) <- allsamples
-  rownames(rpkms) <- genes
-  genesone <- names(peakspergene)[peakspergene == 1]
-  for (gene in genesone) {
+rawcounts <- dist_calc(method, dfanno, rawcounts, genesmore, allsamples)
+gr <- GRanges(vobj$peakrpkms)
+anno <- annotatePeakInBatch(gr, AnnotationData = annotation, output = "overlapping", FeatureLocForDistance = "TSS", bindingRegion = c(-10000, 10000))
+dfanno <- anno
+names(dfanno) <- seq_len(length(dfanno))
+dfanno <- as.data.frame(dfanno)
+allsamples <- unique(unlist(vobj$samples))
+genes <- unique(dfanno$feature)
+peakspergene <- table(dfanno$feature)
+rpkms <- matrix(NA, nrow = length(genes), ncol = length(allsamples))
+colnames(rpkms) <- allsamples
+rownames(rpkms) <- genes
+genesone <- names(peakspergene)[peakspergene == 1]
+for (gene in genesone) {
     rpkms[gene, allsamples] <- as.numeric(dfanno[dfanno$feature == gene, allsamples])
-  }
-  genesmore <- names(peakspergene)[peakspergene > 1]
-  rpkms <- dist_calc(method, dfanno, rpkms, genesmore, allsamples)
-  rawcounts <- matrix(as.numeric(rawcounts), nrow = nrow(rawcounts), dimnames = dimnames(rawcounts))
-  rpkms <- matrix(as.numeric(rpkms), nrow = nrow(rpkms), dimnames = dimnames(rpkms))
-  vobj$rawcounts <- rawcounts
-  vobj$rpkms <- rpkms
-  return(vobj)
+}
+genesmore <- names(peakspergene)[peakspergene > 1]
+rpkms <- dist_calc(method, dfanno, rpkms, genesmore, allsamples)
+rawcounts <- matrix(as.numeric(rawcounts), nrow = nrow(rawcounts), dimnames = dimnames(rawcounts))
+rpkms <- matrix(as.numeric(rpkms), nrow = nrow(rpkms), dimnames = dimnames(rpkms))
+vobj$rawcounts <- rawcounts
+vobj$rpkms <- rpkms
+
+#Normalize 
+
+samples <- vobj$samples
+rawcounts <- vobj$rawcounts
+allsamples <- unique(unlist(samples))
+allgenes <- rownames(rawcounts)
+conditions <- c()
+for (i in seq_len(length(samples))) {
+  conditions <- c(conditions, rep(names(samples)[i], length(samples[[i]])))
+}
+conditions <- factor(conditions)
+vobj$rawcounts <- na_replace(vobj$rawcounts, 0)
+cds <- DESeq::newCountDataSet(vobj$rawcounts, conditions)
+cds <- DESeq::estimateSizeFactors(cds)
+cds <- DESeq::estimateDispersions(cds, fitType = "local")
+vsd <- DESeq::varianceStabilizingTransformation(cds)
+normalized <- Biobase::exprs(vsd)
+rownames(normalized) <- rownames(rawcounts)
+vobj$normalized <- normalized
+
+load(system.file("extdata","network.rda",package="vulcandata",mustWork=TRUE))
+
+vobj_analysis<-vulcan(vobj, network = network, minsize = 5, contrast = c("Responder", "Non-Responder"))
