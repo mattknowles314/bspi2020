@@ -5,9 +5,7 @@ x <- length(samples_count[["peaks"]])
 y <- length(unique(samples_count[["samples"]][["SampleID"]]))
 
 if(x==y){
-    message("SUCCESS: number of peaks matches number of samples")
-    message("x:", x, " | y: ",y)
+    message("SUCCESS")
 }else {
-    message("ERROR: number of peaks did not match number of samples")
-    message("x:", x, " | y: ",y)
+    stop("Error: dimensions not equal")
 }
