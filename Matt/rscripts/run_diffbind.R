@@ -1,25 +1,28 @@
 setwd("/home/matthew/Documents/BSPIData/")
 
-library(DiffBind, quietly=TRUE)
+library(DiffBind)
 
-analysis <- function(){
-    samples <- read.csv("labelled_data.csv")
-    samples_dba <- dba(sampleSheet = samples, minOverlap = 2, config = data.frame(reportInit="DBA", AnalysisMethod=DBA_DESEQ2), bRemoveM = TRUE)
-    save(samples_dba, file = "samplesdba.Rdata")
-    samples_count<-dba.count(samples_dba,  bParallel = FALSE)
-    save(samples_count, file = "samplescount.Rdata")
-    samples_contrast <- dba.contrast(samples_count, categories = c(DBA_CONDITION,DBA_TISSUE))
-    save(samples_contrast, file = "samplescont.Rdata")
-    samples_analyze <- dba.analyze(samples_count, method=DBA_DESEQ2, bParallel= FALSE)
-    save(samples_analyze, file = "samplesanalyze.Rdata")
+db_analysis <- function(){
+    message("---RUNNING DIFFBIND ANALYSIS---")
+    #samples <- read.csv("labelled_data.csv")
+    samples_dba <- dba(sampleSheet = "labelled_data.csv", config = data.frame(reportInit="DBA", AnalysisMethod=DBA_DESEQ2))
+    save(samples_dba, file = "rdata/samplesdba.Rdata")
+    samples_count<-dba.count(samples_dba, bParallel = FALSE, bRemoveDuplicates=FALSE)
+    save(samples_count, file = "rdata/samplescount.Rdata")
+    samples_contrast <- dba.contrast(samples_count, categories = DBA_CONDITION)
+    save(samples_contrast, file = "rdata/samplescont.Rdata")
+    samples_analyze <- dba.analyze(samples_contrast, method=DBA_DESEQ2, bParallel= FALSE)
+    save(samples_analyze, file = "rdata/samplesanalyze.Rdata")
     samples_peaks <- dba.peakset(samples_analyze)
-    save(samples_peaks, file="samplespeaks.Rdata")
+    save(samples_peaks, file="rdata/samplespeaks.Rdata")
     samples.DB <- dba.report(samples_analyze, method = DBA_DESEQ2, bUsePval=TRUE, th=0.04)
-    save(samples.DB, file = "samplesDB.Rdata")
+    save(samples.DB, file = "rdata/samplesDB.Rdata")
 }
 
-plots <- function(samples_analyze)
+make_plots <- function()
 {    
+    message("---CREATING PLOTS---")
+    load(file = "/home/matthew/Documents/BSPIData/rdata/samplesanalyze.Rdata")
     png(file="~/Documents/BSPIData/plots/pcadata.png")
     dba.plotPCA(samples_analyze, DBA_TISSUE, label=DBA_CONDITION, b3D = FALSE)
     dev.off()
@@ -31,7 +34,6 @@ plots <- function(samples_analyze)
     png(file="~/Documents/BSPIData/plots/hmpdata.png")
     dba.plotHeatmap(samples_analyze, contrast=1, bUsePval = FALSE)
     dev.off()
-
     png(file="~/Documents/BSPIData/plots/volcdata.png")
     dba.plotVolcano(samples_analyze, bUsePval = TRUE)
     dev.off()
@@ -42,6 +44,7 @@ plots <- function(samples_analyze)
 }
 
 load_files <- function(){
+  message("---LOADING FILES---")
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplesanalyze.Rdata")
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplescont.Rdata")
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplescount.Rdata")
@@ -50,3 +53,5 @@ load_files <- function(){
   load(file = "/home/matthew/Documents/BSPIData/rdata/samplespeaks.Rdata")
 }
 
+db_analysis()
+make_plots()
