@@ -22,7 +22,9 @@ print("DiffBind produced "+str(plotCount)+" Plots")
 
 print("---END OF DIFFBIND---")
 print("---RUNNING DIFFBIND TEST---")
-os.system("Rscript "+db_test_loc)
-'''print("---RUNNING VULCAN---")
-os.system("Rscript "+run_vulcan_loc)'''
-print("---FINISHED!---")
+if(os.system("Rscript "+db_test_loc)==0):
+    print("---RUNNING VULCAN---")
+    os.system("Rscripti "+run_vulcan_loc)
+    print("---FINISHED---")
+else:
+    print("---FAILED---")
