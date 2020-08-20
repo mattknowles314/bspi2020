@@ -26,7 +26,7 @@ print("---END OF DIFFBIND---")
 print("---RUNNING DIFFBIND TEST---")
 if(os.system("Rscript "+db_test_loc)==0):
     print("---RUNNING VULCAN---")
-    os.system("Rscripti "+run_vulcan_loc)
+    os.system("Rscript "+run_vulcan_loc)
     os.system("pdflatex "+report_loc)
     os.system("zathura "+report_loc.strip("tex")+"pdf")
     print("---FINISHED---")
