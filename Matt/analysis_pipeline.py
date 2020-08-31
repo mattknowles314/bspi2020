@@ -61,7 +61,7 @@ if(os.system("Rscript "+db_test_loc)==0):
             ##################
             ''')
     os.system("Rscript "+run_vulcan_loc)
-    os.chdir("/home/matthew/Documents/BSPIData/Matt/reports")
+    os.chdir("/home/matthew/Documents/BSPI/Matt/reports")
     os.system("pdflatex "+report_loc)
     print('''
             #################################
