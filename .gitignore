@@ -4,6 +4,6 @@
 *.Rhistory
 *.sublime-workspace
 *.code-workspace
-*.fdb-latexmk
+*.fdb_latexmk
 *.aux
 *.fls
