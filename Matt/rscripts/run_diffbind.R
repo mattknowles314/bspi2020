@@ -4,7 +4,7 @@ library(DiffBind)
 
 db_analysis <- function(){
     message("---RUNNING DIFFBIND ANALYSIS---")
-    samples_dba <- dba(sampleSheet = "labelled_data.csv", config = data.frame(reportInit="DBA", AnalysisMethod=DBA_DESEQ2, DataType=DBA_DATA_GRANGES), peakCaller="macs")
+    samples_dba <- dba(sampleSheet = "labelled_data.csv", config = data.frame(reportInit="DBA", AnalysisMethod=DBA_DESEQ2, DataType=DBA_DATA_GRANGES, bUsePval=FALSE), bRemoveM = TRUE,peakCaller="macs")
     samples_count<-dba.count(samples_dba, bParallel = FALSE, bRemoveDuplicates=FALSE)
     samples_contrast <- dba.contrast(samples_count, categories = DBA_CONDITION)
     samples_analyze <- dba.analyze(samples_contrast, method=DBA_DESEQ2, bParallel= FALSE)
@@ -28,7 +28,7 @@ make_plots <- function()
     dev.off()
 
     png(file="~/Documents/BSPIData/plots/madata.png")
-    dba.plotMA(samples_analyze, bUsePval = FALSE, th=0.04)
+    dba.plotMA(samples_analyze, bUsePval = FALSE, th=0.05)
     dev.off()
 
     png(file="~/Documents/BSPIData/plots/hmpdata.png")
