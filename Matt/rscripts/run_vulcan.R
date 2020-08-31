@@ -133,14 +133,6 @@ normalized <- Biobase::exprs(vsd)
 rownames(normalized) <- rownames(rawcounts)
 vobj$normalized <- normalized
 
-#Get ARACNe Network and name vector for gene ID's
-geneID <- c("10458", "3225", "8880", "10409", "57211", "5078", "338662", "340260")
-names(geneID) <- c("BAIAP2","HOXC9","FUBP1","BASP1","ADGRG6", "PAX4", "OR8D4", "UNCX")
-
-data("regulonbrca")
-adjfile <- system.file("aracne", "brcaaracne.adj", package="aracne.networks")
-regul <- aracne2regulon(adjfile, eset)
-
 #The only function I haven't modified!
   
 vobj_analysis_rvnr<-vulcan(vobj, regulonbrca, minsize = 5, contrast = c("Responder", "Non-Responder"), annotation = names(regbrca)<-nameGene(names(regulonbrca))
