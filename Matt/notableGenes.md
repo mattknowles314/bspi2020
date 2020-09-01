@@ -13,11 +13,11 @@
     -> iThis gene is responsible for encoding a protein with several transient phosphoylation sites and PEST motifs. 
 
 - NONRESPONDER VS METASTASIS
-1. DAP3
+1. DAP3, p=0.00207
     -> Plays key roles in translation, cellular respiration, and apoptosis. This gene is known to be associated with cancer development, although it is shown to aid some but supress others.
-2. HUS1
+2. HUS1, p=0.00339
     -> The protein encoded by HUS1 is involved in the cell cycle arrest in response to DNA damage.
-3. CTCF
+3. CTCF, p=
     -> Codes a transcription factor. 
-4. DVL3
+4. DVL3, p=0.00337
     -> Encodes a cytoplasmic phosphoprotein that regulates cell proliferation
