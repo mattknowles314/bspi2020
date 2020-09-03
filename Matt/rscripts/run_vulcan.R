@@ -3,7 +3,7 @@ setwd("/home/matthew/Documents/BSPIData/")
 library(vulcan)
 library(DiffBind)
 library(imputeTS)
-BiocManager::install("TxDb.Hsapiens.UCSC.hg38.knownGene")
+#BiocManager::install("TxDb.Hsapiens.UCSC.hg38.knownGene")
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 library(aracne.networks)
 library(viper)
@@ -31,6 +31,7 @@ nameGene <- function(x){
 }
 
 names(regbrca)<-nameGene(names(regulonbrca))
+
 
 sheet <- read.csv("labelled_data.csv", as.is = TRUE)
 dbobj <- samples_dba
@@ -142,7 +143,7 @@ vobj_analysis_rvm<-vulcan(vobj, regulonbrca, minsize = 5, contrast = c("Responde
 vobj_analysis_nrvm<-vulcan(vobj, regulonbrca, minsize = 5, contrast = c("Non-Responder", "Metastasis"), annotation = names(regbrca)<-nameGene(names(regulonbrca))
 )
 #Gene Set Enrichment Analysis
-  
+
 reflist<-setNames(-sort(rnorm(1000)),paste0("gene",1:1000))
 set<-paste0("gene",sample(1:200,50))
 gseaobj<-gsea(reflist,set,method = "pareto")
@@ -163,3 +164,27 @@ dev.off()
 png(file="~/Documents/BSPIData/plots/vulcgsea.png")
 plot_gsea(gseaobj)
 dev.off()
+
+
+#Checking with another network
+regbric <- regulon
+names(regbric)<-nameGene(names(regulon))
+
+vobj_analysis_rvnr_bric<-vulcan(vobj, regulon, minsize = 5, contrast = c("Responder", "Non-Responder"), annotation = nameGene(names(regulon)))
+vobj_analysis_rvnr_bric[["msviper"]][["signature"]] <- na_replace(vobj_analysis_rvnr_bric[["msviper"]][["signature"]],1)
+png(file="~/Documents/BSPIData/plots/rvnrMETABRIC.png")
+plot(vobj_analysis_rvnr_bric$msviper, mrs=8)
+dev.off()
+
+vobj_analysis_rvm_bric<-vulcan(vobj, regulon, minsize = 5, contrast = c("Responder", "Metastasis"), annotation = nameGene(names(regulon)))
+vobj_analysis_rvm_bric[["msviper"]][["signature"]] <- na_replace(vobj_analysis_rvm_bric[["msviper"]][["signature"]],1)
+png(file="~/Documents/BSPIData/plots/rvmMETABRIC.png")
+plot(vobj_analysis_rvm_bric$msviper, mrs=8)
+dev.off()
+
+vobj_analysis_nrvm_bric<-vulcan(vobj, regulon, minsize = 5, contrast = c("Non-Responder", "Metastasis"), annotation = nameGene(names(regulon)))
+vobj_analysis_nrvm_bric[["msviper"]][["signature"]] <- na_replace(vobj_analysis_nrvm_bric[["msviper"]][["signature"]],1)
+png(file="~/Documents/BSPIData/plots/nrvmMETABRIC.png")
+plot(vobj_analysis_nrvm_bric$msviper, mrs=8)
+dev.off()
+
