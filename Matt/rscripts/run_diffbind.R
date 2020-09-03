@@ -4,10 +4,10 @@ library(DiffBind)
 
 db_analysis <- function(){
     message("---RUNNING DIFFBIND ANALYSIS---")
-    samples_dba <- dba(sampleSheet = "labelled_data.csv", config = data.frame(reportInit="DBA", AnalysisMethod=DBA_DESEQ2, DataType=DBA_DATA_GRANGES, bUsePval=FALSE), bRemoveM = TRUE,peakCaller="macs")
-    samples_count<-dba.count(samples_dba, bParallel = FALSE, bRemoveDuplicates=FALSE)
-    samples_contrast <- dba.contrast(samples_count, categories = DBA_CONDITION)
-    samples_analyze <- dba.analyze(samples_contrast, method=DBA_DESEQ2, bParallel= FALSE)
+    samples_dba <- dba(sampleSheet = "labelled_data.csv", config = data.frame(reportInit="DBA", AnalysisMethod=DBA_DESEQ2, DataType=DBA_DATA_GRANGES), bRemoveM=TRUE)
+    samples_count<-dba.count(samples_dba, bParallel = FALSE)
+    samples_contrast <- dba.contrast(samples_count, categories = c(DBA_CONDITION,DBA_TISSUE))
+    samples_analyze <- dba.analyze(samples_count, method=DBA_DESEQ2, bParallel= FALSE)
     samples_peaks <- dba.peakset(samples_analyze)
     samples.DB <- dba.report(samples_analyze, method = DBA_DESEQ2, bUsePval=TRUE, th=0.05)
     message("---DIFFIBIND COMPLETED: SAVING FILES---")
@@ -27,8 +27,16 @@ make_plots <- function()
     dba.plotPCA(samples_analyze, DBA_TISSUE, label=DBA_CONDITION, b3D = FALSE)
     dev.off()
 
-    png(file="~/Documents/BSPIData/plots/madata.png")
-    dba.plotMA(samples_analyze, bUsePval = FALSE, th=0.05)
+    png(file="~/Documents/BSPIData/plots/madatarvnr.png")
+    dba.plotMA(samples_analyze, contrast = 1,bUsePval = FALSE, th=0.05)
+    dev.off()
+
+    png(file="~/Documents/BSPIData/plots/madatarvm.png")
+    dba.plotMA(samples_analyze, contrast = 2,bUsePval = FALSE, th=0.05)
+    dev.off()
+
+    png(file="~/Documents/BSPIData/plots/madatanrvm.png")
+    dba.plotMA(samples_analyze, contrast = 3,bUsePval = FALSE, th=0.05)
     dev.off()
 
     png(file="~/Documents/BSPIData/plots/hmpdata.png")
