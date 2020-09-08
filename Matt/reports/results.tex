@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{float}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{MChIPSAPR - Matt's ChIP-Seq Analysis Pipeline Results}
+\author{Matthew Knowles}
+
+\begin{document}
+
+\maketitle
+
+\section{The Plots}
+
+\begin{figure}[h]
+\centering
+\caption{PCA Plot}
+\includegraphics*{/home/matthew/Documents/BSPIData/plots/pcadata.png}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+\centering
+\caption{MA Plot}
+\includegraphics*{/home/matthew/Documents/BSPIData/plots/madata.png}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+\centering
+\caption{VULCAN plot 1: Responder vs Non-Responder}
+\includegraphics*{/home/matthew/Documents/BSPIData/plots/rvnr.png}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{VULCAN plot 2: Responder vs Metastasis}
+\includegraphics*{/home/matthew/Documents/BSPIData/plots/rvm.png}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{VULCAN plot 3: Metastasis vs Non-Responder}
+\includegraphics*{/home/matthew/Documents/BSPIData/plots/nrvm.png}
+\end{figure}
+
+\end{document}

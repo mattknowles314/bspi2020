@@ -3,3 +3,8 @@
 *.RData
 *.Rhistory
 *.sublime-workspace
+*.code-workspace
+*.fdb_latexmk
+*.aux
+*.fls
+*.synctex.gz
