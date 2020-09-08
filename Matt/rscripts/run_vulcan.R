@@ -188,3 +188,8 @@ png(file="~/Documents/BSPIData/plots/nrvmMETABRIC.png")
 plot(vobj_analysis_nrvm_bric$msviper, mrs=8)
 dev.off()
 
+save(vobj_analysis_rvnr_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisrvnr.Rdata")
+save(vobj_analysis_rvm_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisrvm.Rdata")
+save(vobj_analysis_nrvm_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisnrvm.Rdata")
+
+
