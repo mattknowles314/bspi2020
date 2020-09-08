@@ -13,11 +13,11 @@
 module load bio/BWA/0.7.17-foss-2019b
 module load bio/SAMtools/1.10-foss-2019b
 
-for sequ in ./sequencesx/*.fastq; do
+for sequ in ./sequences/*.fastq; do
 	sequ=${sequ%.fastq}
 	sequ=${sequ##*/}
-	bwa aln GRCH38 ./sequencesx/${sequ}.fastq> ./aligned/${sequ}.bwa
-	bwa samse GRCH38 ./aligned/${sequ}.bwa ./sequencesx/${sequ}.fastq> ./aligned/${sequ}.sam 
+	bwa aln GRCH38 ./sequences/${sequ}.fastq> ./aligned/${sequ}.bwa
+	bwa samse GRCH38 ./aligned/${sequ}.bwa ./sequences/${sequ}.fastq> ./aligned/${sequ}.sam 
 	samtools view -bS ./aligned/${sequ}.sam> ./aligned/${sequ}.bam
 	samtools sort -O bam -o ./aligned/${sequ}.sorted.bam -T temp ./aligned/${sequ}.bam
 	samtools index ./aligned/${sequ}.sorted.bam
