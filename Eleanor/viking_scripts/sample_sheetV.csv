@@ -1,0 +1,22 @@
+SampleID,Tissue,Factor,Condition,Replicate ,bamReads,bamControl,ControlID,Peaks,PeakCaller
+G1 ,BT82597,ER,Responder,1,aligned/GSM798383_1.sorted.bam,aligned/GSM798406_1.sorted.bam,G1_input,peaks/G1.bam_peaks.xls,macs
+G2,BT82590,ER,Responder,1,aligned/GSM798384_1.sorted.bam,aligned/GSM798407_1.sorted.bam,G2_input,peaks/G2.bam_peaks.xls,macs
+G3,CC106585_T3,ER,Responder,1,aligned/GSM798385_1.sorted.bam,,,peaks/G3.bam_peaks.xls,macs
+G4,CX627219_T4,ER,Responder,1,aligned/GSM798386_1.sorted.bam,aligned/GSM798408_1.sorted.bam,G4_input,peaks/G4.bam_peaks.xls,macs
+G5,NT2304,ER,Responder,1,aligned/GSM798387_1.sorted.bam,aligned/GSM798409_1.sorted.bam,G5_input,peaks/G5.bam_peaks.xls,macs
+G5.2,NT2304,ER,Responder,2,aligned/GSM798388_1.sorted.bam,aligned/GSM798409_1.sorted.bam,G5.2_input,peaks/G5.2.bam_peaks.xls,macs
+G6,NT2433,ER,Responder,1,aligned/GSM798389_1.sorted.bam,aligned/GSM798410_1.sorted.bam,G6_input,peaks/G6.bam_peaks.xls,macs
+G7,NT2360,ER,Responder,1,aligned/GSM798390_1.sorted.bam,aligned/GSM798411_1.sorted.bam,G7_input,peaks/G7.bam_peaks.xls,macs
+G8,NT2289,ER,Responder,1,aligned/GSM798391_1.sorted.bam,aligned/GSM798412_1.sorted.bam,G8_input,peaks/G8.bam_peaks.xls,macs
+P1,CC316812_T1,ER,Non-responder,1,aligned/GSM798392_1.sorted.bam,,,peaks/P1.bam_peaks.xls,macs
+P2,CC135745_T2,ER,Non-responder,1,aligned/GSM798393_1.sorted.bam,,,peaks/P2.bam_peaks.xls,macs
+P3,NT2138,ER,Non-responder,1,aligned/GSM798394_1.sorted.bam,aligned/GSM798413_1.sorted.bam,P3_input,peaks/P3.bam_peaks.xls,macs
+P4,NT2171,ER,Non-responder,1,aligned/GSM798395_1.sorted.bam,aligned/GSM798414_1.sorted.bam,P4_input,peaks/P4.bam_peaks.xls,macs
+P5,NT2350,ER,Non-responder,1,aligned/GSM798396_1.sorted.bam,aligned/GSM798415_1.sorted.bam,P5_input,peaks/P5.bam_peaks.xls,macs
+P5.2,NT2350,ER,Non-responder,2,aligned/GSM798397_1.sorted.bam,aligned/GSM798415_1.sorted.bam,P5.2_input,peaks/P5.2.bam_peaks.xls,macs
+P6,BT81585,ER,Non-responder,1,aligned/GSM798398_1.sorted.bam,aligned/GSM798416_1.sorted.bam,P6_input,peaks/P6.bam_peaks.xls,macs
+P6.2,BT81585,ER,Non-responder,2,aligned/GSM798399_1.sorted.bam,aligned/GSM798416_1.sorted.bam,P6.2_input,peaks/P6.2.bam_peaks.xls,macs
+P7,BT81583,ER,Non-responder,1,aligned/GSM798400_1.sorted.bam,aligned/GSM798417_1.sorted.bam,P7_input,peaks/P7.bam_peaks.xls,macs
+M1,Met_T1,ER,Metastasis,1,aligned/GSM798401_1.sorted.bam,aligned/GSM798418_1.sorted.bam,M1_input,peaks/M1.bam_peaks.xls,macs
+M2,Met_T3,ER,Metastasis,1,aligned/GSM798402_1.sorted.bam,aligned/GSM798419_1.sorted.bam,M2_input,peaks/M2.bam_peaks.xls,macs
+M3,Met_T4,ER,Metastasis,1,aligned/GSM798403_1.sorted.bam,aligned/GSM798420_1.sorted.bam,M3_input,peaks/M3.bam_peaks.xls,macs
