@@ -11,6 +11,7 @@ library(biomaRt)
 library(org.Mm.eg.db)
 library(org.Hs.eg.db)
 
+load(file = "/home/matthew/Documents/BSPIData/metabric-regulon-tfs.rda")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplesanalyze.Rdata")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplescont.Rdata")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplescount.Rdata")
@@ -165,7 +166,6 @@ png(file="~/Documents/BSPIData/plots/vulcgsea.png")
 plot_gsea(gseaobj)
 dev.off()
 
-
 #Checking with another network
 regbric <- regulon
 names(regbric)<-nameGene(names(regulon))
@@ -188,8 +188,6 @@ png(file="~/Documents/BSPIData/plots/nrvmMETABRIC.png")
 plot(vobj_analysis_nrvm_bric$msviper, mrs=8)
 dev.off()
 
-save(vobj_analysis_rvnr_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisrvnr.Rdata")
-save(vobj_analysis_rvm_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisrvm.Rdata")
-save(vobj_analysis_nrvm_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisnrvm.Rdata")
-
-
+save(vobj_analysis_rvnr_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisrvnrb.Rdata")
+save(vobj_analysis_rvm_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisrvmb.Rdata")
+save(vobj_analysis_nrvm_bric, file="/home/matthew/Documents/BSPIData/rdata/vobjanalysisnrvmb.Rdata")
