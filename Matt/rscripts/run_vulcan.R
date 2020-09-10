@@ -11,6 +11,7 @@ library(biomaRt)
 library(org.Mm.eg.db)
 library(org.Hs.eg.db)
 
+load(file = "/home/matthew/Documents/BSPIData/brca-tf-regulon.rda")
 load(file = "/home/matthew/Documents/BSPIData/metabric-regulon-tfs.rda")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplesanalyze.Rdata")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplescont.Rdata")
@@ -19,9 +20,7 @@ load(file = "/home/matthew/Documents/BSPIData/rdata/samplesDB.Rdata")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplesdba.Rdata")
 load(file = "/home/matthew/Documents/BSPIData/rdata/samplespeaks.Rdata")
 
-data("regulonbrca")
-
-regbrca <- regulonbrca
+regbrca <- regul
 
 nameGene <- function(x){
   tab<-AnnotationDbi::select(org.Hs.eg.db,keys = x, columns = c("SYMBOL"), keytype = "ENTREZID")
@@ -31,7 +30,7 @@ nameGene <- function(x){
   return(out)
 }
 
-names(regbrca)<-nameGene(names(regulonbrca))
+names(regbrca)<-nameGene(names(regul))
 
 
 sheet <- read.csv("labelled_data.csv", as.is = TRUE)
@@ -137,12 +136,17 @@ vobj$normalized <- normalized
 
 #The only function I haven't modified!
   
-vobj_analysis_rvnr<-vulcan(vobj, regulonbrca, minsize = 5, contrast = c("Responder", "Non-Responder"), annotation = names(regbrca)<-nameGene(names(regulonbrca))
+vobj_analysis_rvnr<-vulcan(vobj, regul, minsize=15, contrast = c("Responder", "Non-Responder"), annotation = names(regbrca)<-nameGene(names(regul))
 )
-vobj_analysis_rvm<-vulcan(vobj, regulonbrca, minsize = 5, contrast = c("Responder", "Metastasis"), annotation = names(regbrca)<-nameGene(names(regulonbrca))
+vobj_analysis_rvnr[["msviper"]][["signature"]] <- na_replace(vobj_analysis_rvnr[["msviper"]][["signature"]],1)
+
+vobj_analysis_rvm<-vulcan(vobj, regul, minsize=15, contrast = c("Responder", "Metastasis"), annotation = names(regbrca)<-nameGene(names(regul))
 )
-vobj_analysis_nrvm<-vulcan(vobj, regulonbrca, minsize = 5, contrast = c("Non-Responder", "Metastasis"), annotation = names(regbrca)<-nameGene(names(regulonbrca))
+vobj_analysis_rvm[["msviper"]][["signature"]] <- na_replace(vobj_analysis_rvm[["msviper"]][["signature"]],1)
+
+vobj_analysis_nrvm<-vulcan(vobj, regul, minsize=15, contrast = c("Non-Responder", "Metastasis"), annotation = names(regbrca)<-nameGene(names(regul))
 )
+vobj_analysis_nrvm[["msviper"]][["signature"]] <- na_replace(vobj_analysis_nrvm[["msviper"]][["signature"]],1)
 #Gene Set Enrichment Analysis
 
 reflist<-setNames(-sort(rnorm(1000)),paste0("gene",1:1000))
@@ -170,19 +174,19 @@ dev.off()
 regbric <- regulon
 names(regbric)<-nameGene(names(regulon))
 
-vobj_analysis_rvnr_bric<-vulcan(vobj, regulon, minsize = 5, contrast = c("Responder", "Non-Responder"), annotation = nameGene(names(regulon)))
+vobj_analysis_rvnr_bric<-vulcan(vobj, regulon, minsize=10, contrast = c("Responder", "Non-Responder"), annotation = nameGene(names(regulon)))
 vobj_analysis_rvnr_bric[["msviper"]][["signature"]] <- na_replace(vobj_analysis_rvnr_bric[["msviper"]][["signature"]],1)
 png(file="~/Documents/BSPIData/plots/rvnrMETABRIC.png")
 plot(vobj_analysis_rvnr_bric$msviper, mrs=8)
 dev.off()
 
-vobj_analysis_rvm_bric<-vulcan(vobj, regulon, minsize = 5, contrast = c("Responder", "Metastasis"), annotation = nameGene(names(regulon)))
+vobj_analysis_rvm_bric<-vulcan(vobj, regulon, minsize=10, contrast = c("Responder", "Metastasis"), annotation = nameGene(names(regulon)))
 vobj_analysis_rvm_bric[["msviper"]][["signature"]] <- na_replace(vobj_analysis_rvm_bric[["msviper"]][["signature"]],1)
 png(file="~/Documents/BSPIData/plots/rvmMETABRIC.png")
 plot(vobj_analysis_rvm_bric$msviper, mrs=8)
 dev.off()
 
-vobj_analysis_nrvm_bric<-vulcan(vobj, regulon, minsize = 5, contrast = c("Non-Responder", "Metastasis"), annotation = nameGene(names(regulon)))
+vobj_analysis_nrvm_bric<-vulcan(vobj, regulon, minsize=10, contrast = c("Non-Responder", "Metastasis"), annotation = nameGene(names(regulon)))
 vobj_analysis_nrvm_bric[["msviper"]][["signature"]] <- na_replace(vobj_analysis_nrvm_bric[["msviper"]][["signature"]],1)
 png(file="~/Documents/BSPIData/plots/nrvmMETABRIC.png")
 plot(vobj_analysis_nrvm_bric$msviper, mrs=8)
