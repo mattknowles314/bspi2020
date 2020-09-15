@@ -27,7 +27,7 @@ make_plots <- function()
     dba.plotPCA(samples_analyze, DBA_TISSUE, label=DBA_CONDITION, b3D = FALSE)
     dev.off()
 
-    png(file="~/Documents/BSPIData/plots/madatarvnr.png")
+    png(file="~/Documents/BSPIData/plots/maplots.png")
     attach(mtcars)
     par(mfrow=c(2,2))
     dba.plotMA(samples_analyze, contrast = 1,bUsePval = FALSE, th=0.05)
