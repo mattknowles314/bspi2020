@@ -28,14 +28,10 @@ make_plots <- function()
     dev.off()
 
     png(file="~/Documents/BSPIData/plots/madatarvnr.png")
+    attach(mtcars)
+    par(mfrow=c(2,2))
     dba.plotMA(samples_analyze, contrast = 1,bUsePval = FALSE, th=0.05)
-    dev.off()
-
-    png(file="~/Documents/BSPIData/plots/madatarvm.png")
     dba.plotMA(samples_analyze, contrast = 2,bUsePval = FALSE, th=0.05)
-    dev.off()
-
-    png(file="~/Documents/BSPIData/plots/madatanrvm.png")
     dba.plotMA(samples_analyze, contrast = 3,bUsePval = FALSE, th=0.05)
     dev.off()
 
