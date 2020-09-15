@@ -1,7 +1,4 @@
 # BSPI Project 2020
+[![DOI](https://zenodo.org/badge/281112482.svg)](https://zenodo.org/badge/latestdoi/281112482)
 
-This repo is where we can keep all our code (and other files like PDF documents) for the project. I reccomend setting up your own folder for which you can work out of, but by pulling the whole repo we will then have access to everyone's code which we can use at will.
-
-Remember to pull the repo fairly often to make sure that you're not working on outdated versions of code. 
-
-If you need any help with Git please feel free to message me!
+Github repo containing the code used for the BPSI project ran by Dr Andrew Holding (https://www.york.ac.uk/biology/our-staff/dr-andrew-holding/) aiming to identify potential theraputic tarets in breast cancer patients with poor outcome by applying machine learning.
